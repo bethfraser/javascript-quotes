@@ -14,20 +14,21 @@ window.onload = function(){
   var quote5 = new Quote("That is quite obviously a frog. ", "Jay Chetty", "featured");
   var quotesList = [quote1, quote2, quote3, quote4, quote5];
 
+  var inputText = document.getElementById("quote-text-input");
+  var inputAuthor = document.getElementById("quote-author-input");
+  var inputFeatured = document.getElementById("quote-class-input");
+  var preview = document.getElementById("preview");
 
   var getText = function(){
-    var input = document.getElementById("quote-text-input");
-    return input.value;
+    return inputText.value;
   }
 
   var getAuthor = function(){
-    var input = document.getElementById("quote-author-input");
-    return input.value;
+    return inputAuthor.value;
   }
 
   var getClass = function(){
-    var input = document.getElementById("quote-class-input");
-    if(input.checked){
+    if(inputFeatured.checked){
       return "featured"
     }
     else {
@@ -35,10 +36,19 @@ window.onload = function(){
     }
   }
 
+  var resetInputs = function(){
+    inputText.value = "";
+    inputAuthor.value = "";
+    inputFeatured.checked = false;
+    preview.innerHTML = "";
+    inputText.autofocus = true;
+  }
+
   var addNewQuote = function(){
     var newUserQuote = new Quote(getText(), getAuthor(), getClass());
     var newUserQuoteItem = createQuoteItem(newUserQuote);
     filterQuote(newUserQuoteItem);
+    resetInputs();
   }
 
   var createQuoteItem = function(quote){
@@ -56,8 +66,17 @@ window.onload = function(){
     var newCite = document.createElement("cite");
     newCite.innerText = quote.author;
 
+    var deleteButton = document.createElement("button");
+    deleteButton.className = "delete-button";
+    deleteButton.innerText = "Delete";
+    deleteButton.style.margin = "0 0 0px 10px"
+
     newBlockQuote.appendChild(newCite);
+    newBlockQuote.appendChild(deleteButton);
     newQuote.appendChild(newBlockQuote);
+
+    deleteButton.onclick = deleteQuote;
+
     return newQuote;
   }
 
@@ -80,14 +99,21 @@ window.onload = function(){
     }
   }
 
-  var qotd = document.querySelector('h2');
+  var deleteQuote = function(){
+    var parent = this.parentNode.parentNode;
+    parent.parentNode.removeChild(parent);
+  }
 
-  qotd.innerText = "Featured Quotes";
-
+  var showPreview = function(){
+    var input = document.getElementById("quote-text-input");
+    var author = document.getElementById("quote-author-input");
+    preview.innerHTML = "<blockquote>" + input.value + "<cite>" + author.value + "</cite></blockquote><br>";
+  }
   addQuotes();
 
+  var addButton = document.getElementById('add-button');
 
-  var button = document.getElementById('add-button');
+  addButton.onclick = addNewQuote;
 
-  button.onclick = addNewQuote;
+  document.onkeyup = showPreview;
 }
