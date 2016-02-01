@@ -6,17 +6,21 @@
 body {
   font-family: "Trebuchet MS";
   padding: 20px;
+  background: url('http://www.myfreetextures.com/wp-content/uploads/2011/06/brushedsteel4.jpg');
+  background-size: cover;
 }
 
 header {
-  margin: 0 auto;
-  max-width: 70%;
+
   text-align: center;
+
 }
 
-main {
+main, header {
   max-width: 70%;
   margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 5px 40px;
 }
 
 p {
