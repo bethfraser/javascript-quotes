@@ -1,8 +1,96 @@
 .logo {
   width: 50px;
-  height: 50px;
+  height: 40px;
 }
 
 body {
   font-family: "Trebuchet MS";
+  padding: 20px;
+}
+
+header {
+  margin: 0 auto;
+  max-width: 70%;
+  text-align: center;
+}
+
+main {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+p {
+  text-align: center;
+}
+
+.featured, .quote {
+  color: white;
+  background-image: url('https://d30y9cdsu7xlg0.cloudfront.net/png/19279-200.png');
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+  padding: 5px 5px 5px 20px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  max-width: 100%;
+}
+
+.featured {
+  background-color: #0392cf;
+}
+
+.featured blockquote {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+blockquote {
+  font-family: Georgia;
+}
+
+.quote {
+  background-color: #029074;
+}
+
+.featured cite {
+  color: #b3def0;
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.quote cite {
+  display: inline-block;
+  color: #b3ddd5;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.featured button, .quote button {
+  float: right;
+  margin-right: 30px;
+  font-size: 1em;
+  background-color: white;
+  color: #333;
+  border-radius: 5px;
+  padding: 3px 8px;
+  border: 0px;
+  transition: background-color 0.5s;
+}
+
+button {
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: grey;
+}
+
+input {
+  font-size: 1rem;
+  padding: 3px;
+  margin-top: 10px;
+}
+
+#preview {
+  display: none;
 }

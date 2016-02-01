@@ -41,7 +41,7 @@ window.onload = function(){
     inputAuthor.value = "";
     inputFeatured.checked = false;
     preview.innerHTML = "";
-    inputText.autofocus = true;
+    preview.style.display = "none";
   }
 
   var addNewQuote = function(){
@@ -69,12 +69,11 @@ window.onload = function(){
     var deleteButton = document.createElement("button");
     deleteButton.className = "delete-button";
     deleteButton.innerText = "Delete";
-    deleteButton.style.margin = "0 0 0px 10px"
 
-    newBlockQuote.appendChild(newCite);
-    newBlockQuote.appendChild(deleteButton);
+
     newQuote.appendChild(newBlockQuote);
-
+    newQuote.appendChild(newCite);
+    newQuote.appendChild(deleteButton);
     deleteButton.onclick = deleteQuote;
 
     return newQuote;
@@ -100,14 +99,13 @@ window.onload = function(){
   }
 
   var deleteQuote = function(){
-    var parent = this.parentNode.parentNode;
+    var parent = this.parentNode;
     parent.parentNode.removeChild(parent);
   }
 
   var showPreview = function(){
-    var input = document.getElementById("quote-text-input");
-    var author = document.getElementById("quote-author-input");
-    preview.innerHTML = "<blockquote>" + input.value + "<cite>" + author.value + "</cite></blockquote><br>";
+    preview.style.display = "block";
+    preview.innerHTML = "<blockquote>" + inputText.value + "</blockquote><cite>" + inputAuthor.value + "</cite><br>";
   }
   addQuotes();
 
@@ -116,4 +114,13 @@ window.onload = function(){
   addButton.onclick = addNewQuote;
 
   document.onkeyup = showPreview;
+
+  inputFeatured.onclick = function(){
+    if(preview.className === "quote"){
+      preview.className = "featured";
+    }
+    else {
+      preview.className = "quote";
+    }
+  }
 }
