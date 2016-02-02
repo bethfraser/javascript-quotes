@@ -17,7 +17,11 @@ window.onload = function(){
   var inputText = document.getElementById("quote-text-input");
   var inputAuthor = document.getElementById("quote-author-input");
   var inputFeatured = document.getElementById("quote-class-input");
+
   var preview = document.getElementById("preview");
+
+  var quotesBox = document.getElementById('quotes-list');
+  var featuredBox = document.getElementById('featured-quotes');
 
   var getText = function(){
     return inputText.value;
@@ -70,7 +74,6 @@ window.onload = function(){
     deleteButton.className = "delete-button";
     deleteButton.innerText = "Delete";
 
-
     newQuote.appendChild(newBlockQuote);
     newQuote.appendChild(newCite);
     newQuote.appendChild(deleteButton);
@@ -79,8 +82,6 @@ window.onload = function(){
     return newQuote;
   }
 
-  var quotesBox = document.getElementById('quotes-list');
-  var featuredBox = document.getElementById('featured-quotes');
 
   var filterQuote = function(quote){
     if(quote.className === "featured"){
@@ -106,14 +107,10 @@ window.onload = function(){
   var showPreview = function(){
     preview.style.display = "block";
     preview.innerHTML = "<blockquote>" + inputText.value + "</blockquote><cite>" + inputAuthor.value + "</cite><br>";
+    if(inputText.value === "" && inputAuthor.value === ""){
+      preview.style.display = "none";
+    }
   }
-  addQuotes();
-
-  var addButton = document.getElementById('add-button');
-
-  addButton.onclick = addNewQuote;
-
-  document.onkeyup = showPreview;
 
   inputFeatured.onclick = function(){
     if(preview.className === "quote"){
@@ -123,4 +120,15 @@ window.onload = function(){
       preview.className = "quote";
     }
   }
+
+  // ----------- actual functions being called after loading 
+
+  addQuotes();
+
+  var addButton = document.getElementById('add-button');
+
+  addButton.onclick = addNewQuote;
+
+  document.onkeyup = showPreview;
+
 }
