@@ -43,7 +43,6 @@ window.onload = function(){
   var resetInputs = function(){
     inputText.value = "";
     inputAuthor.value = "";
-    // inputFeatured.checked = false;
     preview.innerHTML = "";
     preview.style.display = "none";
   }
